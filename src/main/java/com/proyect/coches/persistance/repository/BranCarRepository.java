@@ -20,7 +20,6 @@ public class BranCarRepository implements IBrandCarRepository {
     private final IBrandCarCrudRepository iBrandCarCrudRepository;
     private final IBrandCarMapper iBrandCarMapper;
 
-
     /**
      *
       * Devuelve una lista con todas las marcas de coches
@@ -28,6 +27,7 @@ public class BranCarRepository implements IBrandCarRepository {
      */
     @Override
     public List<BrandCarPojo> getAll() {
+
         return iBrandCarMapper.toMarcasCochePojo(iBrandCarCrudRepository.findAll());
     }
 

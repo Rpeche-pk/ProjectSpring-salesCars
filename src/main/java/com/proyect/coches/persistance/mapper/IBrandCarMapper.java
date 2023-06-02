@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-
 /**
  * Mapper que transforma objetos de Entidades a pojos y viceversa
  */
@@ -18,15 +17,17 @@ public interface IBrandCarMapper {
 
     /**
      * Convierte una entidad a un pojo de marca coche
+     *
      * @param marcaEntity Entidad a convertir
      * @return Pojo Convertido
      */
-    @Mapping(source ="id" ,target ="id" )
-    @Mapping(source ="description" ,target ="description" )
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "description", target = "description")
     BrandCarPojo toMarcaCochePojo(BrandCarEntity marcaEntity);
 
     /**
      * Convierte un pojo de a una entidad marca coche
+     *
      * @param marcaPojo Entidad a convertir
      * @return Entity Convertido
      */
@@ -35,6 +36,7 @@ public interface IBrandCarMapper {
 
     /**
      * Convierte una lista de entities de a una lista  de pojo marca coche
+     *
      * @param marcasCocheEntity Entidad a convertir
      * @return lista Convertido
      */

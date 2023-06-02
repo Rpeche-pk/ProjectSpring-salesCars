@@ -1,14 +1,16 @@
 package com.proyect.coches.domain.pojo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Objects;
 
 /**
  * Pojo de la Entidad MarcaCoche
  */
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
 public class BrandCarPojo {
 
     /**
