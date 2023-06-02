@@ -1,14 +1,17 @@
 package com.proyect.coches.controller;
 
-import com.proyect.coches.domain.pojo.BrandCarPojo;
+import com.proyect.coches.domain.dto.BrandCarDto;
 import com.proyect.coches.domain.service.IBrandCarService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Controlador Rest de Marca Coche
@@ -28,7 +31,7 @@ public class BrandCarController {
      * @return HttpStatus ook
      */
     @GetMapping
-    public ResponseEntity<List<BrandCarPojo>> getAll() {
+    public ResponseEntity<List<BrandCarDto>> getAll() {
         return ResponseEntity.ok(iBrandCarService.getAll());
     }
 
@@ -37,21 +40,29 @@ public class BrandCarController {
      * @param id de la marca coche a buscar
      * @return HttpStatus Ok si la encuentra , HtppStatus not found de lo contrario
      */
+    @Operation(description = "Búsqueda de las marcas de un coche")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "404",description = "Brand Car Not found")
+    })
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> getBrandCar(@PathVariable Integer id) {
-        return ResponseEntity.of(iBrandCarService.getBrandCar(id));
+    public ResponseEntity<?> getBrandCar(@Parameter(description = "Id de la marca coche", example = "17") @PathVariable Integer id) {
+        return iBrandCarService.getBrandCar(id)
+                .map(brandCarPojo -> new ResponseEntity<>(brandCarPojo,HttpStatus.OK))
+                .orElseGet(()->new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        //return ResponseEntity.of(iBrandCarService.getBrandCar(id));
     }
 
     /**
      * Crea una nueva marca coche
-      * @param brandCarPojo Marca coche a crear
+      * @param brandCarDto Marca coche a crear
      * @return HttpStatus created si la guarda correctamente, HttpStatus de lo contrario
      */
     @PostMapping
-    public ResponseEntity<BrandCarPojo> save(@RequestBody BrandCarPojo brandCarPojo){
+    public ResponseEntity<BrandCarDto> save(@RequestBody BrandCarDto brandCarDto){
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(iBrandCarService.save(brandCarPojo));
+                    .body(iBrandCarService.save(brandCarDto));
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .build();
@@ -60,13 +71,13 @@ public class BrandCarController {
 
     /**
      * Actualiza una marca coche
-     * @param brandCarPojoUpdate Marca coche actualizada
+     * @param brandCarDtoUpdate Marca coche actualizada
      * @return HttpStatus OK si la actualiza correctamente
      */
     @PatchMapping
-    public ResponseEntity<BrandCarPojo> update(@RequestBody BrandCarPojo brandCarPojoUpdate){
+    public ResponseEntity<BrandCarDto> update(@RequestBody BrandCarDto brandCarDtoUpdate){
 
-        return ResponseEntity.of(iBrandCarService.update(brandCarPojoUpdate));
+        return ResponseEntity.of(iBrandCarService.update(brandCarDtoUpdate));
     }
 
     /**

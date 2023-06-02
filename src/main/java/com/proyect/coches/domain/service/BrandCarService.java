@@ -1,6 +1,6 @@
 package com.proyect.coches.domain.service;
 
-import com.proyect.coches.domain.pojo.BrandCarPojo;
+import com.proyect.coches.domain.dto.BrandCarDto;
 import com.proyect.coches.domain.repository.IBrandCarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,32 +23,32 @@ public class BrandCarService implements IBrandCarService {
      * @return Lista de marcas de coches
      */
     @Override
-    public List<BrandCarPojo> getAll() {
+    public List<BrandCarDto> getAll() {
         return iBrandCarRepository.getAll();
     }
 
     @Override
-    public Optional<BrandCarPojo> getBrandCar(Integer id) {
+    public Optional<BrandCarDto> getBrandCar(Integer id) {
         return iBrandCarRepository.getBrandCar(id);
     }
 
     @Override
-    public BrandCarPojo save(BrandCarPojo newBrandCar) {
+    public BrandCarDto save(BrandCarDto newBrandCar) {
         return iBrandCarRepository.save(newBrandCar);
     }
 
     /**
      * Actualiza una marca coche
      *
-     * @param brandCarPojo Marca  coche a actualizar
+     * @param brandCarDto Marca  coche a actualizar
      * @return un optional de la marca
      */
     @Override
-    public Optional<BrandCarPojo> update(BrandCarPojo brandCarPojo) {
-        if (iBrandCarRepository.getBrandCar(brandCarPojo.getId()).isEmpty()) {
+    public Optional<BrandCarDto> update(BrandCarDto brandCarDto) {
+        if (iBrandCarRepository.getBrandCar(brandCarDto.getId()).isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(iBrandCarRepository.save(brandCarPojo));
+        return Optional.of(iBrandCarRepository.save(brandCarDto));
     }
 
     /**
