@@ -1,7 +1,7 @@
 package com.proyect.coches.controller;
 
 import com.proyect.coches.domain.dto.BrandCarDto;
-import com.proyect.coches.domain.service.IBrandCarService;
+import com.proyect.coches.domain.useCase.IBrandUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -18,13 +18,13 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/marcas-coches")
+@RequestMapping(path = "/brands-car")
 public class BrandCarController {
 
     /**
      * Servicio de marca coche
      */
-    private final IBrandCarService iBrandCarService;
+    private final IBrandUseCase iBrandCarService;
 
     /**
      * Devuelve lista de marca coches

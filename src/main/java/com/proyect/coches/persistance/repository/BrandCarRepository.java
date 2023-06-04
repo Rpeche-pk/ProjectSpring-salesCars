@@ -2,6 +2,7 @@ package com.proyect.coches.persistance.repository;
 
 import com.proyect.coches.domain.dto.BrandCarDto;
 import com.proyect.coches.domain.repository.IBrandCarRepository;
+import com.proyect.coches.persistance.crud.IBrandCarCrudRepository;
 import com.proyect.coches.persistance.entity.BrandCarEntity;
 import com.proyect.coches.persistance.mapper.IBrandCarMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Optional;
  */
 @RequiredArgsConstructor
 @Repository
-public class BranCarRepository implements IBrandCarRepository {
+public class BrandCarRepository implements IBrandCarRepository {
 
     private final IBrandCarCrudRepository iBrandCarCrudRepository;
     private final IBrandCarMapper iBrandCarMapper;
@@ -28,14 +29,14 @@ public class BranCarRepository implements IBrandCarRepository {
     @Override
     public List<BrandCarDto> getAll() {
 
-        return iBrandCarMapper.toMarcasCochePojo(iBrandCarCrudRepository.findAll());
+        return iBrandCarMapper.toMarcasCocheDto(iBrandCarCrudRepository.findAll());
     }
 
 
     @Override
     public Optional<BrandCarDto> getBrandCar(Integer id) {
         return iBrandCarCrudRepository.findById(id)
-                .map(iBrandCarMapper::toMarcaCochePojo);
+                .map(iBrandCarMapper::toMarcaCocheDto);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class BranCarRepository implements IBrandCarRepository {
         //BrandCarEntity apply = brandCarEntity.apply(newBrandCar);
         //iBrandCarCrudRepository.save(apply);*/
         BrandCarEntity brandCarEntity = iBrandCarMapper.toMarcaCocheEntity(newBrandCar);
-        return iBrandCarMapper.toMarcaCochePojo(iBrandCarCrudRepository.save(brandCarEntity));
+        return iBrandCarMapper.toMarcaCocheDto(iBrandCarCrudRepository.save(brandCarEntity));
     }
 
     /**

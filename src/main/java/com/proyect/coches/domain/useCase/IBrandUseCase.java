@@ -1,11 +1,11 @@
-package com.proyect.coches.domain.service;
+package com.proyect.coches.domain.useCase;
 
 import com.proyect.coches.domain.dto.BrandCarDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IBrandCarService {
+public interface IBrandUseCase {
     /**
      * Devuelve una lista con todas las marcas de coches
      * @return List<BrandCarPojo>

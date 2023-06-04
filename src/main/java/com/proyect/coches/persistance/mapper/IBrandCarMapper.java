@@ -5,6 +5,7 @@ import com.proyect.coches.persistance.entity.BrandCarEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -21,9 +22,9 @@ public interface IBrandCarMapper {
      * @param marcaEntity Entidad a convertir
      * @return Pojo Convertido
      */
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "description", target = "description")
-    BrandCarDto toMarcaCochePojo(BrandCarEntity marcaEntity);
+    //@Mapping(source = "id", target = "id")
+    //@Mapping(source = "description", target = "description")
+    BrandCarDto toMarcaCocheDto(BrandCarEntity marcaEntity);
 
     /**
      * Convierte un pojo de a una entidad marca coche
@@ -31,7 +32,8 @@ public interface IBrandCarMapper {
      * @param marcaPojo Entidad a convertir
      * @return Entity Convertido
      */
-    @InheritInverseConfiguration
+    //@InheritInverseConfiguration
+    @Mapping(target = "carEntities", ignore = true)
     BrandCarEntity toMarcaCocheEntity(BrandCarDto marcaPojo);
 
     /**
@@ -40,5 +42,5 @@ public interface IBrandCarMapper {
      * @param marcasCocheEntity Entidad a convertir
      * @return lista Convertido
      */
-    List<BrandCarDto> toMarcasCochePojo(List<BrandCarEntity> marcasCocheEntity);
+    List<BrandCarDto> toMarcasCocheDto(List<BrandCarEntity> marcasCocheEntity);
 }

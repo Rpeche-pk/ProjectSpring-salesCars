@@ -1,4 +1,4 @@
-package com.proyect.coches.persistance.repository;
+package com.proyect.coches.persistance.crud;
 
 import com.proyect.coches.persistance.entity.BrandCarEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
