@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -32,4 +33,6 @@ public class CustomerEntity implements Serializable {
     @Column(name = "contrasenia")
     private String password;
 
+    @OneToMany(mappedBy = "customerEntity")
+    private List<PurchaseEntity> purchaseEntity;
 }

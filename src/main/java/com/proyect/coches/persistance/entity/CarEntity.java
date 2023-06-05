@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,7 +47,7 @@ public class CarEntity implements Serializable {
     @Column(name = "tipo_combustible")
     private String fuelType;
 
-    @Column(name = "cantidad_asientros")
+    @Column(name = "cantidad_asientos")
     private Integer numberSeats;
 
     @Column(name = "traccion")
@@ -61,9 +62,11 @@ public class CarEntity implements Serializable {
     @Column(name = "ruta_imagen")
     private String imagePath;
 
-
     @ManyToOne
     @JoinColumn(name = "marca_coche_id", insertable = false,updatable = false)
     private BrandCarEntity brandCarEntity;
+
+    @OneToMany(mappedBy = "carEntity")
+    private List<CarPurchaseEntity> carPurchaseEntity;
 
 }

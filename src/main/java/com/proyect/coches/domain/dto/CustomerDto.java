@@ -1,8 +1,6 @@
 package com.proyect.coches.domain.dto;
 
-import jakarta.persistence.Column;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
